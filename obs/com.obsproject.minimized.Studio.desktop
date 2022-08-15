@@ -10,6 +10,7 @@ Type=Application
 Categories=AudioVideo;Recorder;
 StartupNotify=true
 StartupWMClass=obs
+NotShowIn=GNOME
 
 GenericName[an_ES]=Programa de retransmisión/gravación
 Comment[an_ES]=Program de retransmisión/gravación libre y de codigo ubierto
