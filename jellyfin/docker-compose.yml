@@ -4,11 +4,19 @@ services:
     image: jellyfin/jellyfin
     container_name: jellyfin
     # user: uid:gid
+    group_add:
+      - "985" # getent group render | cut -d: -f3
+      - "989" # getent group video | cut -d: -f3
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+      - /dev/kfd:/dev/kfd # Remove this device if you don't use the OpenCL tone-mapping
+    environment:
+      - ROC_ENABLE_PRE_VEGA=1
     network_mode: 'host'
     volumes:
       - /srv/jellyfin/config:/config
       - /srv/jellyfin/cache:/cache
-      - /path/to/media:/media
+      - /mnt/b86730f5-597d-48a4-8ef6-b7afc07306b1/media:/media
     restart: 'unless-stopped'
     # Optional - alternative address used for autodiscovery
     #environment:
