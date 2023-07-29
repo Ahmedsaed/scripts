@@ -26,7 +26,7 @@ EOF
 fi
 ##########################################################
 
-CURRENT_VALUE=$(awk -F 'Button4,' '{print $2}' ~/.imwheelrc)
+CURRENT_VALUE=3 #$(awk -F 'Button4,' '{print $2}' ~/.imwheelrc)
 
 NEW_VALUE=$(zenity --scale --window-icon=info --ok-label=Apply --title="Wheelies" --text "Mouse wheel speed:" --min-value=1 --max-value=100 --value="$CURRENT_VALUE" --step 1)
 
@@ -38,5 +38,4 @@ sed -i "s/\($TARGET_KEY *Button4, *\).*/\1$NEW_VALUE/" ~/.imwheelrc # find the s
 sed -i "s/\($TARGET_KEY *Button5, *\).*/\1$NEW_VALUE/" ~/.imwheelrc # find the string Button5, and write new value.
 
 cat ~/.imwheelrc
-imwheel -kill
-
+imwheel --kill --buttons "45"
