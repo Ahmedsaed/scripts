@@ -1,0 +1,27 @@
+version: '3'
+#---------------------------------------------------------------------#
+#     Homarr - A simple, yet powerful dashboard for your server.     #
+#---------------------------------------------------------------------#
+services:
+  homarr:
+    container_name: homarr
+    image: ghcr.io/ajnart/homarr:latest
+    restart: unless-stopped
+    volumes:
+      - /home/ahmed/apps/homarr/configs:/app/data/configs
+      - /home/ahmed/apps/homarr/icons:/app/public/icons
+      - /home/ahmed/apps/homarr/img:/app/public/img
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - '80:7575'
+    environment:
+      - TZ=Africa/Cairo
+      - PASSWORD=your_password_here
+  dash:
+    image: mauricenino/dashdot:latest
+    restart: unless-stopped
+    privileged: true
+    ports:
+      - '3001:3001'
+    volumes:
+      - /:/mnt/host:ro
