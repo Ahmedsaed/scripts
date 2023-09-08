@@ -5,8 +5,8 @@ services:
     container_name: jellyfin
     # user: uid:gid
     group_add:
-      - "985" # getent group render | cut -d: -f3
-      - "989" # getent group video | cut -d: -f3
+      - "105" # getent group render | cut -d: -f3
+      - "39" # getent group video | cut -d: -f3
     devices:
       - /dev/dri/renderD128:/dev/dri/renderD128
       - /dev/kfd:/dev/kfd # Remove this device if you don't use the OpenCL tone-mapping
