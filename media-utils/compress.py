@@ -2,7 +2,6 @@ import os
 import sys
 import subprocess
 import json
-from moviepy.editor import VideoFileClip
 
 def get_all_video_files(directory):
         video_extensions = [".mp4", ".mkv", ".avi", ".mov", ".wmv"]
@@ -23,8 +22,7 @@ def convert_to_mp4_h264(input_file, output_file):
             'ffmpeg',
             '-hwaccel', 'vaapi',
             '-i', input_file,
-            '-c:v', 'h264',
-            '-strict', 'experimental',
+            '-c:v', 'h264_vaapi',
             output_file
         ]
         subprocess.run(ffmpeg_cmd, check=True)
