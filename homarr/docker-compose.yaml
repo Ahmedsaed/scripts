@@ -13,15 +13,16 @@ services:
       - /home/ahmed/apps/homarr/img:/app/public/img
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - '80:7575'
+      - '8448:7575'
     environment:
       - TZ=Africa/Cairo
-      - PASSWORD=your_password_here
+      - PASSWORD=${HOMARR_PASSWORD}
   dash:
     image: mauricenino/dashdot:latest
-    restart: unless-stopped
-    privileged: true
+    container_name: homarr-dash
     ports:
       - '3001:3001'
+    restart: unless-stopped
+    privileged: true
     volumes:
       - /:/mnt/host:ro

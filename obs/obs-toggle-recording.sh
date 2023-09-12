@@ -2,13 +2,13 @@
 
 gtk-launch com.obsproject.minimized.Studio.desktop > /dev/null 2> /dev/null & # Launch obs and redirect stdout and stderr to null (don't print on screen)
 sleep 2
-obs-cli recording toggle --password as2652003 & # start recording 
+obs-cli recording toggle --password password & # start recording 
 
 # stop recording if an argument (time in seconds) is given
 if [ $1 -gt 0 ]
 then
     sleep $1
-    obs-cli recording toggle --password as2652003 &
+    obs-cli recording toggle --password password &
 fi
 
 trap "echo exiting" SIGTERM # kill obs without killing this script 
