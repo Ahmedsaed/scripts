@@ -9,3 +9,5 @@ services:
       WATCHTOWER_SCHEDULE: 0 0 20 * * *
       TZ: Africa/Cairo
       WATCHTOWER_CLEANUP: "true"
+      WATCHTOWER_NOTIFICATIONS: shoutrrr
+      WATCHTOWER_NOTIFICATION_URL: ntfy://ntfy.server.ahmedsaed.me/watchtower?title=WatchtowerUpdates
