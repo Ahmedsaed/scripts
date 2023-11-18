@@ -10,6 +10,7 @@ services:
     volumes:
       - /home/ahmed/apps/homarr/configs:/app/data/configs
       - /home/ahmed/apps/homarr/icons:/app/public/icons
+      - /home/ahmed/apps/homarr/data:/data
       - /home/ahmed/apps/homarr/img:/app/public/img
       - /var/run/docker.sock:/var/run/docker.sock
     ports:

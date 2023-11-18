@@ -1,0 +1,25 @@
+  # Variables that will need to be changed:
+  #     <PUID>                            -  User id for folder/file permissions
+  #     <PGID>                            -  Group id for folder/file permissions
+  #     <PATH_TO_CONFIG>                  -  Path where Unmanic will store config files
+  #     <PATH_TO_LIBRARY>                 -  Path where you store the files that Unmanic will scan
+  #     <PATH_TO_ENCODE_CACHE>            -  Cache path for in-progress encoding tasks
+  #
+
+---
+version: '2.4'
+services:
+  unmanic:
+    container_name: unmanic
+    image: josh5/unmanic:latest
+    ports:
+      - 8889:8888
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/ahmed/apps/unmanic:/config
+      - /mnt/b86730f5-597d-48a4-8ef6-b7afc07306b1/media:/library
+      - /tmp/unmanic/cache:/tmp/unmanic
+    devices:
+      - /dev/dri:/dev/dri       # For H/W transcoding using the VAAPI encoder
