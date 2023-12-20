@@ -2,6 +2,7 @@ version: '3'
 services:
   app:
     image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
     networks:
       - nginx-proxy
     extra_hosts:
@@ -21,6 +22,7 @@ services:
       - /home/ahmed/apps/npm/letsencrypt:/etc/letsencrypt
   db:
     image: 'jc21/mariadb-aria:latest'
+    restart: unless-stopped
     networks:
       - nginx-proxy
     environment:

@@ -14,7 +14,7 @@ services:
       - /home/ahmed/apps/homarr/img:/app/public/img
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - '80:7575'
+      - '82:7575'
     environment:
       - TZ=Africa/Cairo
       - PASSWORD=${HOMARR_PASSWORD}
