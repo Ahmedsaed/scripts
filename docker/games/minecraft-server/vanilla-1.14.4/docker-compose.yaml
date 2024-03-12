@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  minecraft-1.14.4:
+    image: "mcserver-1.14.4"
+      # restart: unless-stopped
+    container_name: "mcserver-1.14.4"
+    environment:
+      MEMORYSIZE: "3G"
+    volumes:
+      - "/home/ahmed/mcserver-1.14.4:/data:rw"
+    ports:
+      - "25565:25565"
+    # The following allow `docker attach minecraft` to work
+    stdin_open: true
+    tty: true

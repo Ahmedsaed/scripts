@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Destination directory for the script (adjust as needed)
+install_dir="/usr/local/bin"
+
+# Source directory of the script
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Check if the destination directory exists
+if [ ! -d "$install_dir" ]; then
+    echo "Error: Destination directory does not exist. Please create it manually."
+    exit 1
+fi
+
+# Copy the script to the destination directory
+cp "$script_dir/notify" "$install_dir/"
+
+# Add execute permissions
+chmod +x "$install_dir/notify"
+
+echo "Installation complete. You can now use 'notify' from anywhere."

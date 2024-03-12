@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Default topic and server
+topic="server"
+server="server.ahmedsaed.me:8447"
+
+# Function to display script usage
+usage() {
+    echo "Usage: notify [OPTIONS] message"
+    echo "Send a notification using ntfy."
+    echo "OPTIONS:"
+    echo "  -t, --topic TOPIC    Specify a different topic (default: server)"
+    echo "  -f, --future INTERVAL  Send the notification in the future (format: 2h30m)"
+    echo "  -h, --help            Display this help message"
+    exit 1
+}
+
+# Parse command line options
+while [[ "$#" -gt 0 ]]; do
+    case "$1" in
+        -t|--topic)
+            topic="$2"
+            shift 2
+            ;;
+        -f|--future)
+            interval="$2"
+            shift 2
+            ;;
+        -h|--help)
+            usage
+            ;;
+        *)
+            message="$1"
+            shift
+            ;;
+    esac
+done
+
+# Check if message is provided
+if [ -z "$message" ]; then
+    echo "Error: Message is required."
+    usage
+fi
+
+# Build the cURL command with or without future interval
+if [ -n "$interval" ]; then
+    curl -H "In: $interval" -d "$message" "$server/$topic"
+else
+    curl -d "$message" "$server/$topic"
+fi

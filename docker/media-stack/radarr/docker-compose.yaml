@@ -1,0 +1,17 @@
+---
+version: "2.1"
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Africa/Cairo
+    volumes:
+      - /home/ahmed/apps/radarr/data:/config
+      - '/mnt/b86730f5-597d-48a4-8ef6-b7afc07306b1/media/Movies:/movies' #optional
+      - /home/ahmed/Downloads:/downloads #optional
+    ports:
+      - 7878:7878
+    restart: unless-stopped
