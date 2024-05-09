@@ -104,7 +104,7 @@ fi
 ## Create the shortcut
 cp -f "${original_shortcut}" "${new_shortcut}"
 line_match="Exec=/usr/bin/google-chrome-stable"
-sed -i "s:${line_match}:${line_match} --enable-features=VaapiVideoEncoder,VaapiVideoDecoder,CanvasOopRasterization:g" "${new_shortcut}" # The //\//\\/ is used to escape forward slashes
+sed -i "s:${line_match}:${line_match} --enable-features=VaapiVideoEncoder,VaapiVideoDecoder,CanvasOopRasterization --enable-features=PlatformHEVCEncoderSupport:g" "${new_shortcut}" # The //\//\\/ is used to escape forward slashes
 
 echo
 echo "All done."
