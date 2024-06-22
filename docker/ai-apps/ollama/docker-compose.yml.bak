@@ -1,0 +1,70 @@
+name: ollama
+services:
+    ollama:
+        cpu_shares: 90
+        command: []
+        container_name: ollama
+        deploy:
+            resources:
+                limits:
+                    memory: "16671309824"
+        hostname: ollama
+        image: ollama/ollama:latest
+        labels:
+            icon: https://ollama.com/public/ollama.png
+        networks:
+            default: null
+        ports:
+            - mode: ingress
+              target: 11434
+              published: "11434"
+              protocol: tcp
+        restart: unless-stopped
+        volumes:
+            - type: bind
+              source: /opt/ai-apps/ollama
+              target: /root/.ollama
+              bind:
+                create_host_path: true
+    open-webui:
+        cpu_shares: 90
+        command: []
+        container_name: open-webui
+        deploy:
+            resources:
+                limits:
+                    memory: "16671309824"
+        environment:
+            OLLAMA_BASE_URL: http://ollama:11434
+        hostname: open-webui
+        image: ghcr.io/open-webui/open-webui:main
+        labels:
+            icon: https://ollama.com/public/ollama.png
+        networks:
+            default: null
+        ports:
+            - mode: ingress
+              target: 8080
+              published: "3002"
+              protocol: tcp
+        restart: unless-stopped
+        volumes:
+            - type: bind
+              source: /opt/ai-apps/open-webui
+              target: /app/backend/data
+              bind:
+                create_host_path: true
+networks:
+    default:
+        name: ollama_default
+x-casaos:
+    author: self
+    category: self
+    hostname: ""
+    icon: https://ollama.com/public/ollama.png
+    index: /
+    is_uncontrolled: false
+    port_map: "3002"
+    scheme: http
+    title:
+        custom: Ollama
