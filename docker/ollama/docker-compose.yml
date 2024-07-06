@@ -18,3 +18,11 @@ services:
     environment:
       - OLLAMA_BASE_URL=http://ollama:11434
     restart: unless-stopped
+
+  openedai-speech:
+      image: ghcr.io/matatonic/openedai-speech-min
+      container_name: openedai-speech
+      volumes:
+        - /home/ahmed/apps/openedai/voices:/app/voices
+        - /home/ahmed/apps/openedai/config:/app/config
+
