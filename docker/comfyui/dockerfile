@@ -1,0 +1,23 @@
+FROM alpine:latest AS builder
+
+RUN apk add --no-cache git
+
+RUN git clone https://github.com/comfyanonymous/ComfyUI.git
+
+# Use the official Miniconda base image
+FROM python:3.8 AS runner
+
+# Copy the ComfyUI directory from the builder stage
+COPY --from=builder /ComfyUI /ComfyUI
+
+# Change to the ComfyUI directory
+WORKDIR /ComfyUI
+
+# Install the required dependencies
+RUN pip install --upgrade pip && pip install -r requirements.txt --no-cache-dir && rm -rf ~/.cache/pip
+
+# Expose the port that the app runs on
+EXPOSE 8188
+
+# Start the application
+CMD ["python", "main.py", "--cpu", "--liste", "0.0.0.0"]

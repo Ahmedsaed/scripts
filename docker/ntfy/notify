@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Default topic and server
-topic="server"
-server="server.ahmedsaed.me:8447"
+topic="random"
+server="https://ntfy.ahmedsaed.me"
 
 # Function to display script usage
 usage() {

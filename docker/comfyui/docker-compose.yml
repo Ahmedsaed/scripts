@@ -1,0 +1,9 @@
+services:
+  comfyui:
+    build: .
+    ports:
+      - "8188:8188"  # Map the port from the container to the host
+    # volumes:
+    #   - ./ComfyUI:/app/ComfyUI  # Mount the ComfyUI directory (optional)
+    environment:
+      - CONDA_DEFAULT_ENV=comfyenv  # Set the conda environment
