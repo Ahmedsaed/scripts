@@ -1,0 +1,54 @@
+name: virt-manager
+services:
+  virt-manager:
+    cpu_shares: 90
+    command: []
+    deploy:
+      resources:
+        limits:
+          memory: 15899M
+    devices:
+      - /dev/kvm:/dev/kvm
+    environment:
+      - DARK_MODE=true
+      - HOSTS=['qemu:///system']
+    image: mber5/virt-manager:latest
+    ports:
+      - mode: ingress
+        target: 80
+        published: "8185"
+        protocol: tcp
+    privileged: true
+    restart: always
+    volumes:
+      - type: bind
+        source: /var/run/libvirt/libvirt-sock
+        target: /var/run/libvirt/libvirt-sock
+        bind:
+          create_host_path: true
+      - type: bind
+        source: /var/lib/libvirt/images
+        target: /var/lib/libvirt/images
+        bind:
+          create_host_path: true
+      - type: bind
+        source: /home
+        target: /home
+    cap_add: []
+    networks:
+      - default
+    container_name: ""
+    hostname: ""
+networks:
+  default:
+    name: virt-manager_default
+x-casaos:
+  author: self
+  category: self
+  hostname: ""
+  icon: https://static-00.iconduck.com/assets.00/virt-manager-icon-512x512-bwvxgl33.png
+  index: /
+  port_map: "8185"
+  scheme: http
+  title:
+    custom: Virt Manager
