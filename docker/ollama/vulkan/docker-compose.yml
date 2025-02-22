@@ -1,0 +1,15 @@
+services:
+  ollama:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ~/.ollama:/root/.ollama
+    # devices:
+    #   - /dev/dri/renderD128:/dev/dri/renderD128
+    cap_add:
+      - PERFMON
+    restart: unless-stopped
