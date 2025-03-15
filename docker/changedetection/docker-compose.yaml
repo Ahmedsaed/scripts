@@ -43,3 +43,8 @@ services:
       SCREEN_HEIGHT: "1024"
       SCREEN_WIDTH: "1920"
       TIMEOUT: "300000"
+
+networks:
+  default:
+    external: true
+    name: main
