@@ -9,7 +9,7 @@ services:
       ports:
             - 5055:5055
       volumes:
-        - /home/ahmed/apps/jellyseerr/config:/app/config
+        - ${HOME}/apps/jellyseerr/config:/app/config
 
 networks:
   default:
