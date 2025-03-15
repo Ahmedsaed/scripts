@@ -1,17 +1,22 @@
 ---
-version: "2.1"
 services:
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonarr
+    hostname: sonarr
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Afirca/Cairo
     volumes:
-      - /home/ahmed/apps/sonarr:/config
-      - "/mnt/b86730f5-597d-48a4-8ef6-b7afc07306b1/media/TV Shows:/tv" #optional
-      - /home/ahmed/Downloads:/downloads #optional
+        - ${HOME}/apps/sonarr:/config
+        - ${HOME}/Media:/data
+        - "/DATA/Media/TV Shows:/data/TV Shows"
     ports:
-      - 8989:8989
+        - 8989:8989
     restart: unless-stopped
+
+networks:
+  default:
+    external: true
+    name: main
