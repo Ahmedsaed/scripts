@@ -1,0 +1,21 @@
+services:
+  stump:
+    image: aaronleopold/stump:latest
+    container_name: stump
+    hostname: stump
+    environment:
+        PGID: "1000"
+        PUID: "1000"
+        STUMP_CONFIG_DIR: /config
+    ports:
+      - 10801:10801
+    restart: unless-stopped
+    volumes:
+      - ${HOME}/apps/stump/config:/config
+      - ${HOME}/Media/Books:/data
+
+networks:
+  default:
+    external: true
+    name: main
+      
