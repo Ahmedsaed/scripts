@@ -1,0 +1,24 @@
+services:
+  mineos:
+    image: hexparrot/mineos:latest
+    container_name: mineos_server
+    hostname: mineos_server
+    environment:
+      SERVER_PORT: "8443"
+      USE_HTTPS: "false"
+      USER_NAME: ahmed
+      USER_PASSWORD: as2652003
+      USER_UID: "1000"
+    ports:
+      - 8444:8443
+      - 25565-25570:25565-25570
+      - 25565-25570:25565-25570/udp
+    volumes:
+      - ${HOME}/apps/mineos/minecraft:/var/games/minecraft
+    restart: unless-stopped
+    stop_grace_period: 10m0s
+
+networks:
+  default:
+    external: true
+    name: main
