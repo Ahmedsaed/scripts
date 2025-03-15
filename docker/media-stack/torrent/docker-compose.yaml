@@ -10,8 +10,8 @@ services:
       - TZ=Africa/Cairo
       - WEBUI_PORT=8446
     volumes:
-      - /home/ahmed/apps/qbittorrent/config:/config
-      - /home/ahmed/Downloads:/downloads
+      - ${HOME}/apps/qbittorrent/config:/config
+      - ${HOME}/Downloads:/downloads
     ports:
       - 8446:8446
       - 6881:6881

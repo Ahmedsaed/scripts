@@ -1,6 +1,6 @@
 services:
   ollama:
-    image: ollama/ollama
+    image: ahmedsaed26/ollama-vulkan # ollama/ollama
     container_name: ollama
     ports:
       - "11434:11434"
