@@ -1,0 +1,21 @@
+services:
+  virt-manager:
+    image: mber5/virt-manager:latest
+    container_name: virt-manager
+    hostname: virt-manager
+    devices:
+      - /dev/kvm:/dev/kvm
+    environment:
+      - DARK_MODE=false
+      - HOSTS=['qemu:///system']
+    ports:
+      - 8185:80
+    restart: unless-stopped
+    volumes:
+      - /var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock
+      - /var/lib/libvirt/images:/var/lib/libvirt/images
+      - /home:/home
+networks:
+  default:
+    external: true
+    name: main
