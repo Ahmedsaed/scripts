@@ -1,0 +1,16 @@
+services:
+  watchstate:
+    container_name: watchstate
+    hostname: watchstate
+    image: ghcr.io/arabcoders/watchstate:latest
+    ports:
+        - 8080:8080
+    restart: unless-stopped
+    user: "1000:1000" # uid:gid
+    volumes:
+        - ${HOME}/apps/watchstate:/config
+
+networks:
+  default:
+    external: true
+    name: main
