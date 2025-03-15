@@ -1,0 +1,10 @@
+name: cloudflared
+services:
+  cloudflared:
+    container_name: cloudflared
+    hostname: cloudflared
+    image: wisdomsky/cloudflared-web:latest
+    restart: unless-stopped
+    volumes:
+      - ${HOME}/apps/cloudflared/config:/config
+    network_mode: host
