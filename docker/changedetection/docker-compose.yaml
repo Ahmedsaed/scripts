@@ -30,12 +30,16 @@ services:
   playwright-chrome:
     hostname: playwright-chrome
     container_name: playwright-chrome
-    image: ghcr.io/browserless/chromium:latest
-    restart: on-failure:5
+    image: ghcr.io/browserless/chromium:v2.12.0
+    restart: unless-stopped
     environment:
-    - SCREEN_WIDTH=1920
-    - SCREEN_HEIGHT=1024
-    - SCREEN_DEPTH=16
-    - ENABLE_DEBUGGER=false
-    - TIMEOUT=60000 #60 seconds
-    - CONCURRENT=10
+      CHROME_REFRESH_TIME: "600000"
+      CONCURRENT: "10"
+      DEFAULT_BLOCK_ADS: "true"
+      DEFAULT_IGNORE_HTTPS_ERRORS: "true"
+      DEFAULT_STEALTH: "true"
+      ENABLE_DEBUGGER: "false"
+      SCREEN_DEPTH: "16"
+      SCREEN_HEIGHT: "1024"
+      SCREEN_WIDTH: "1920"
+      TIMEOUT: "300000"
