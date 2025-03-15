@@ -1,8 +1,7 @@
 ---
-version: "2.1"
 services:
   code-server:
-    image: lscr.io/linuxserver/code-server:latest
+    image: linuxserver/code-server:latest
     container_name: code-server
     environment:
       - PUID=1000
@@ -10,12 +9,18 @@ services:
       - TZ=Africa/Cairo
       - PASSWORD=${PASSWORD} #optional
       - SUDO_PASSWORD=${PASSWORD} #optional
-      - PROXY_DOMAIN=code.server.ahmedsaed.me #optional
+      - PROXY_DOMAIN=code.ahmedsaed.me #optional
+      - DEFAULT_WORKSPACE=/Documents
     volumes:
-      - /home/ahmed/apps/code-server:/config
-      - /home/ahmed/Documents:/config/workspace
+      - ${HOME}/apps/code-server/config:/config
+      - ${HOME}/Documents:/Documents
     ports:
       - 8443:8443
     restart: unless-stopped
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
+
+networks:
+  default:
+    external: true
+    name: main
