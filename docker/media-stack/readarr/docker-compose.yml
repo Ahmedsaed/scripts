@@ -1,0 +1,20 @@
+services:
+  readarr:
+    image: linuxserver/readarr:develop
+    container_name: readarr
+    environment:
+      - PGID=1000
+      - PUID=1000
+      - TZ=Africa/Cairo
+    hostname: readarr
+    ports:
+      - 8787:8787
+    restart: unless-stopped
+    volumes:
+      - ${HOME}/apps/readarr/config:/config
+      - ${HOME}/Media:/data
+
+networks:
+  default:
+    external: true
+    name: main
