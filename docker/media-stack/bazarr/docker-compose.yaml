@@ -1,0 +1,21 @@
+---
+services:
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - ${HOME}/bazarr/config:/config
+      - ${HOME}/Media:/media
+      - "/mnt/disk2/TV Shows:/mnt/disk2/TV Shows" # mount symbloic links
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+
+networks:
+  default:
+    external: true
+    name: main
