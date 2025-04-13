@@ -1,34 +1,30 @@
 services:
   ollama:
-    image: ahmedsaed26/ollama-vulkan
+    image: ahmedsaed26/ollama-vulkan # ollama/ollama
     container_name: ollama
     ports:
       - "11434:11434"
     volumes:
       - /opt/ai-apps/ollama:/root/.ollama
-#    devices:
-#      - /dev/dri/renderD128:/dev/dri/renderD128
-    cap_add:
-      - PERFMON
     restart: unless-stopped
 
-#  open-webui:
-#    image: ghcr.io/open-webui/open-webui:main
-#    container_name: open-webui
-#    ports:
-#      - "3002:8080"
-#    volumes:
-#      - /opt/ai-apps/open-webui:/app/backend/data
-#    environment:
-#      - OLLAMA_BASE_URL=http://ollama:11434
-#    restart: unless-stopped
-#
-#  openedai-speech:
-#      image: ghcr.io/matatonic/openedai-speech-min
-#      container_name: openedai-speech
-#      volumes:
-#        - ${HOME}/apps/openedai/voices:/app/voices
-#        - ${HOME}/apps/openedai/config:/app/config
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    ports:
+      - "3002:8080"
+    volumes:
+      - /opt/ai-apps/open-webui:/app/backend/data
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    restart: unless-stopped
+
+  openedai-speech:
+      image: ghcr.io/matatonic/openedai-speech-min
+      container_name: openedai-speech
+      volumes:
+        - ${HOME}/apps/openedai/voices:/app/voices
+        - ${HOME}/apps/openedai/config:/app/config
 
 networks:
   default:
